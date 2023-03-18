@@ -43,8 +43,7 @@ steps:
   displayName: 'Install Python 3.8'
 - script: pip install checkov
   displayName: 'Install Checkov'
-- script: checkov -d . --use-enforcement-rules --bc-api-key 05c5d0ac-dde3-4804-9fea-f3b81680a0a0::2bQB3AphrKFX4DUt+Hpy8t3G1QY= --repo-id kowsi-panw/vulnerable-front-end
- --branch main
+- script: checkov -d . --use-enforcement-rules --bc-api-key 05c5d0ac-dde3-4804-9fea-f3b81680a0a0::2bQB3AphrKFX4DUt+Hpy8t3G1QY= --repo-id kowsi-panw/vulnerable-front-end --branch main
   displayName: 'Scan with Prisma Cloud'
   env:
     PRISMA_API_URL: https://app.ca.prismacloud.io/
