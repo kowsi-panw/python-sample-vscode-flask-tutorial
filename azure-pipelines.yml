@@ -18,6 +18,8 @@ strategy:
       python.version: '3.6'
     Python37:
       python.version: '3.7'
+    Python38:
+      python.version: '3.8'
 
 steps:
 - task: UsePythonVersion@0
@@ -34,3 +36,14 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.8'
+  displayName: 'Install Python 3.8'
+- script: pip install checkov
+  displayName: 'Install Checkov'
+- script: checkov -d . --use-enforcement-rules --bc-api-key a5c7477f-1217-415d-9b5e-da429a0a6382::l4cv9ZlKS+PpKsYPYuDNS04c0/0= --repo-id kowsi-panw/python-sample-vscode-flask-tutorial --branch main -o cli -o junitxml --output-file-path console,CheckovReport.xml
+  displayName: 'Scan with Prisma Cloud'
+  env:
+    PRISMA_API_URL: https://app.ca.prismacloud.io/
